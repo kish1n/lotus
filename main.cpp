@@ -3,5 +3,6 @@
 
 int main()
 {
+    SDL_MemoryBarrierReleaseFunction();
     std::cout << "lotus meow\n";
 }

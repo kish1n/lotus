@@ -1,0 +1,7 @@
+prebuilt_cxx_library(
+    name = "SDL3",
+    header_dirs = ["include"],
+    shared_lib = "lib/x64/SDL3.dll",
+    static_lib = "lib/x64/SDL3.lib",
+    visibility = ['PUBLIC'],
+)
