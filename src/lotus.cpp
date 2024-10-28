@@ -9,6 +9,7 @@ using namespace std;
 
 int main(int argc, char** args)
 {
+    cout << "hi" << endl;
     SDL_Log("main():\n");
     SDL_Window* window = NULL;
     SDL_Surface* screenSurface = NULL;
@@ -39,7 +40,7 @@ int main(int argc, char** args)
 			//Hack to get window to stay up
 			SDL_Event e;
             bool quit = false;
-            while (quit == false)
+            while (!quit)
             {
                 while(SDL_PollEvent(&e))
                 {

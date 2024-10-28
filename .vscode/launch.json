@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\buck-out\\v2\\gen\\root\\5540ca4c71e1230f\\__lotus__\\lotus.exe",
+        }
+    ]
+}
