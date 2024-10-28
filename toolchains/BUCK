@@ -8,6 +8,6 @@ system_cxx_toolchain(
 )
 
 system_python_bootstrap_toolchain(
-        name = "python_bootstrap",
-        visibility = ["PUBLIC"],
-    )
+    name = "python_bootstrap",
+    visibility = ["PUBLIC"],
+)
