@@ -39,6 +39,8 @@ int main(int argc, char** args)
 			//Update the surface
 			SDL_UpdateWindowSurface(window);
 
+            render(*window);
+
 			//Hack to get window to stay up
 			SDL_Event e;
             bool quit = false;

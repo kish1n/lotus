@@ -12,3 +12,11 @@ prebuilt_cxx_library(
     preferred_linkage = "shared",
     visibility = ['PUBLIC'],
 )
+
+prebuilt_cxx_library(
+    name = "GLEW_lib",
+    header_dirs = ["glew-2.1.0/include"],
+    static_lib = "glew-2.1.0/lib/Release/x64/glew32s.lib",
+    preferred_linkage = "static",
+    visibility = ['PUBLIC'],
+)
