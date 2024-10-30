@@ -1,3 +1,5 @@
+#include "lotus/render.h"
+
 #include "SDL3/SDL.h"
 
 #include <iostream>
