@@ -1,5 +1,4 @@
 #include "lotus/game.h"
-
 #include "lotus/base.h"
 
 constexpr int SCREEN_WIDTH = 640;
@@ -38,7 +37,7 @@ Game::Game()
         fatal("OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
     }
     SDL_GL_MakeCurrent(m_window, glContext);
-    m_drawer = std::make_unique<Drawer>();
+    m_drawer = std::make_unique<Drawer>(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
     SDL_Event e;

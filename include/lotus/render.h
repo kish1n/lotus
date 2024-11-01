@@ -5,7 +5,7 @@
 class Drawer
 {
 public:
-    Drawer();
+    Drawer(int width, int height);
     virtual ~Drawer() = default;
 
     void draw();
