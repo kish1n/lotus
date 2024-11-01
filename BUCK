@@ -3,7 +3,7 @@ cxx_binary(
     header_namespace = "lotus",
     srcs = glob(["src/*.cpp"]),
     include_directories = ["include"],
-    deps = ["//ThirdParty:SDL3_lib", "//ThirdParty:SDL3_dll", "//ThirdParty:GLEW_lib"],
+    deps = ["//ThirdParty:SDL3_lib", "//ThirdParty:SDL3_dll", "//ThirdParty:OpenGL", "//ThirdParty:Glad"],
     compiler_flags = ["/Z7"],
     linker_flags = ["/DEBUG"],
 )

@@ -14,9 +14,17 @@ prebuilt_cxx_library(
 )
 
 prebuilt_cxx_library(
-    name = "GLEW_lib",
-    header_dirs = ["glew-2.1.0/include"],
-    static_lib = "glew-2.1.0/lib/Release/x64/glew32s.lib",
+    name = "OpenGL",
+    header_dirs = ["OpenGL/include"],
+    static_lib = "OpenGL/OpenGL32.Lib",
     preferred_linkage = "static",
-    visibility = ['PUBLIC'],
+    visibility = ['PUBLIC']
+)
+
+cxx_library(
+    name = "Glad",
+    public_include_directories = ["Glad/include"],
+    srcs = ["Glad/glad.c"],
+    preferred_linkage = "static",
+    visibility = ['PUBLIC']
 )
