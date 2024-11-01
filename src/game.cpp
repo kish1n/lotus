@@ -13,7 +13,7 @@ Game::Game()
     }
 
     // Create window
-    m_window = SDL_CreateWindow("SDL Tutorial", SCREEN_WIDTH, SCREEN_HEIGHT, 0);
+    m_window = SDL_CreateWindow("SDL Tutorial", SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
     if (m_window == NULL)
     {
         fatal("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -23,21 +23,35 @@ Game::Game()
     SDL_Surface* screenSurface = SDL_GetWindowSurface(m_window);
 
     // Fill the surface white
-    SDL_FillSurfaceRect(screenSurface, nullptr, SDL_MapSurfaceRGB(screenSurface, 0xFF, 0xFF, 0xFF));
+    SDL_FillSurfaceRect(screenSurface, nullptr, SDL_MapSurfaceRGB(screenSurface, 0xFF, 0xFF, 0x0));
 
     // Update the surface
     SDL_UpdateWindowSurface(m_window);
 
-    // Hack to get window to stay up
+    // load opengl
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 4);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    SDL_GLContext glContext = SDL_GL_CreateContext(m_window);
+    if (glContext == NULL)
+    {
+        fatal("OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
+    }
+    SDL_GL_MakeCurrent(m_window, glContext);
+    m_drawer = std::make_unique<Drawer>();
+
+
     SDL_Event e;
-    bool quit = false;
-    while (!quit)
+    bool running = true;
+    while (running)
     {
         while (SDL_PollEvent(&e))
         {
             if (e.type == SDL_EVENT_QUIT)
-                quit = true;
+                running = false;
         }
+
+        m_drawer->draw();
     }
 }
 

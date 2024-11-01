@@ -2,4 +2,11 @@
 
 #include "SDL3/SDL.h"
 
-void render(SDL_Window& window);
+class Drawer
+{
+public:
+    Drawer();
+    virtual ~Drawer() = default;
+
+    void draw();
+};
