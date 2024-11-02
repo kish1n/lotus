@@ -48,9 +48,19 @@ Game::Game()
         {
             if (e.type == SDL_EVENT_QUIT)
                 running = false;
+            if (e.type == SDL_EVENT_KEY_DOWN)
+            {
+                switch (e.key.key)
+                {
+                case SDLK_ESCAPE:
+                    running = false;
+                    break;
+                }
+            }
         }
 
         m_drawer->draw();
+        SDL_GL_SwapWindow(m_window);
     }
 }
 

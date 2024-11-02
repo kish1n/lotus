@@ -20,5 +20,4 @@ Drawer::Drawer(int width, int height)
 void Drawer::draw()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    SDL_GL_SwapWindow(SDL_GL_GetCurrentWindow());
 }
