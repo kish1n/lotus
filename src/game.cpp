@@ -22,7 +22,7 @@ Game::Game()
     SDL_Surface* screenSurface = SDL_GetWindowSurface(m_window);
 
     // Fill the surface white
-    SDL_FillSurfaceRect(screenSurface, nullptr, SDL_MapSurfaceRGB(screenSurface, 0xFF, 0xFF, 0x0));
+    SDL_FillSurfaceRect(screenSurface, nullptr, SDL_MapSurfaceRGB(screenSurface, 0x0, 0x0, 0x0));
 
     // Update the surface
     SDL_UpdateWindowSurface(m_window);
