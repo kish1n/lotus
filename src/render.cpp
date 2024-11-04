@@ -33,7 +33,7 @@ Drawer::Drawer(int width, int height)
 
     glViewport(0, 0, width, height);
 
-    /*float vertices[] = {
+    float vertices[] = {
         -0.5f, -0.5f, 0.0f,
         0.5f, -0.5f, 0.0f,
         0.0f, 0.5f, 0.0f};
@@ -87,7 +87,7 @@ Drawer::Drawer(int width, int height)
     glDeleteShader(fragmentShader);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
-    glEnableVertexAttribArray(0);*/
+    glEnableVertexAttribArray(0);
 }
 
 void Drawer::draw()
@@ -95,7 +95,7 @@ void Drawer::draw()
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    //glUseProgram(m_shaderProgram);
-    //glBindVertexArray(m_VAO);
-    //glDrawArrays(GL_TRIANGLES, 0, 3);
+    glUseProgram(m_shaderProgram);
+    glBindVertexArray(m_VAO);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
 }
