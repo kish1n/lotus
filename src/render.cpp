@@ -16,7 +16,7 @@ Drawer::Drawer(int width, int height)
     m_shaderProgram = compileBasicProgram();
 
     float vertices[] = {
-        -0.5f, -0.5f, 0.0f,
+        -0.9f, -0.5f, 0.0f,
         0.5f, -0.5f, 0.0f,
         0.0f, 0.5f, 0.0f};
 
