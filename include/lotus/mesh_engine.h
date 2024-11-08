@@ -7,4 +7,4 @@ public:
     virtual ~MeshEngine() = default;
 
     // unsigned int generateTriangleMesh(vector<Vertex> vertices);
-}
+};
