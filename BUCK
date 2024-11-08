@@ -5,5 +5,5 @@ cxx_binary(
     include_directories = ["include"],
     deps = ["//ThirdParty:SDL3_lib", "//ThirdParty:SDL3_dll", "//ThirdParty:OpenGL", "//ThirdParty:Glad"],
     compiler_flags = ["/Z7", "/GL"],
-    linker_flags = ["/DEBUG"],
+    linker_flags = ["/DEBUG", "/LTCG"],
 )
