@@ -4,8 +4,12 @@
         {
             "name": "debug",
             "type": "cppvsdbg",
+            "cwd": "${workspaceFolder}",
             "request": "launch",
             "program": "${workspaceFolder}\\buck-out\\v2\\gen\\root\\5540ca4c71e1230f\\__lotus__\\lotus.exe",
+            "sourceFileMap": {
+                ".": "${workspaceFolder}"
+            }
         }
     ]
 }

@@ -3,8 +3,10 @@ load("@prelude//toolchains:python.bzl", "system_python_bootstrap_toolchain")
 
 system_cxx_toolchain(
     name = "cxx",
-    cxx_flags = ["/std:c++20"],
+    cxx_flags = ["-std=c++20", "-g", "-O0"],
+    link_flags = ["-g"],
     visibility = ["PUBLIC"],
+    _cxx_tools_info = "prelude//toolchains/cxx/clang:path_clang_tools",
 )
 
 system_python_bootstrap_toolchain(
