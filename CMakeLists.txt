@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28.3)
+cmake_minimum_required(VERSION 3.27.2)
 
 include(cmake/toolchain.cmake)
 
@@ -16,6 +16,7 @@ target_sources(lotus
         src/render.cpp
         src/game.cpp
         src/programs.cpp
+        src/stb_image.cpp
 )
 
 target_include_directories(lotus
@@ -33,3 +34,5 @@ target_link_libraries(lotus
 )
 
 add_subdirectory(external)
+
+file(COPY ${CMAKE_SOURCE_DIR}/Content DESTINATION ${CMAKE_BINARY_DIR})

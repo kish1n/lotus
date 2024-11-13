@@ -13,5 +13,5 @@ public:
 
 private:
     SDL_Window* m_window = nullptr;
-    std::unique_ptr<Drawer> m_drawer;
+    std::unique_ptr<IDrawer> m_drawer;
 };

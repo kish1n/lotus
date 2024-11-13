@@ -31,8 +31,8 @@ Game::Game()
     {
         fatal("Failed to make current context! SDL_Error: %s\n", SDL_GetError());
     }
-    m_drawer = std::make_unique<Drawer>(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+    m_drawer = std::make_unique<BasicTextureDrawer>(SCREEN_WIDTH, SCREEN_HEIGHT);
 
     SDL_Event e;
     bool running = true;
