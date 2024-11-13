@@ -1,0 +1,7 @@
+{
+  "dependencies": [
+    "sdl3",
+    "glm",
+    "stb"
+  ]
+}
