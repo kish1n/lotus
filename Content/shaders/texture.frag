@@ -13,7 +13,9 @@ void main()
     float xd = NDCCoord.x - ourPoint.x;
     float yd = NDCCoord.y - ourPoint.y;
     float d = xd * xd + yd * yd;
-    float a = 1 - clamp(64 * d * d, 0, 1);
+    float dem = 1 + pow(2.72, -24 * d + 3);
+    float a = -1 / dem + 1;
+          a = clamp(a, 0, 1);
     vec4 color = texture(ourTexture, TexCoord);
     FragColor = vec4(color.xyz, a);
 }
