@@ -51,6 +51,9 @@ BasicTextureDrawer::BasicTextureDrawer(int width, int height)
         fatal("Failed to initialize GLAD\n");
     }
 
+    this->width = width;
+    this->height = height;
+
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glViewport(0, 0, width, height);
 
@@ -61,10 +64,10 @@ BasicTextureDrawer::BasicTextureDrawer(int width, int height)
 
     float vertices[] = {
         // positions          // colors           // texture coords
-         0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 0.0f, // top right
-         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f, // bottom right
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f, // bottom left
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 0.0f  // top left 
+         0.75f,  0.75f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 0.0f, // top right
+         0.75f, -0.75f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f, // bottom right
+        -0.75f, -0.75f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f, // bottom left
+        -0.75f,  0.75f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 0.0f  // top left 
     };
     unsigned int indices[] = {  
         0, 1, 3, // first triangle
@@ -115,16 +118,29 @@ BasicTextureDrawer::BasicTextureDrawer(int width, int height)
     }
 
     stbi_image_free(data);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void BasicTextureDrawer::draw()
 {
+    float x, y;
+    Uint32 buttons = SDL_GetMouseState(&x, &y);
+
+    x = 2.f * x / ((float)width) - 1.f;
+    y = 1.f - (2.f * y / ((float)height));
+
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     glBindTexture(GL_TEXTURE_2D, m_texture);
 
     m_shader->use();
+
+    int pointLocation = glGetUniformLocation(m_shader->getId(), "ourPoint");
+    glUniform2f(pointLocation, x, y);
+
     glBindVertexArray(m_VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

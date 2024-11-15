@@ -44,4 +44,5 @@ private:
     std::shared_ptr<Shader> m_shader;
     unsigned int m_VAO;
     unsigned int m_texture;
+    int width, height;
 };
