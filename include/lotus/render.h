@@ -4,26 +4,26 @@
 
 class Shader;
 
-class IDrawer
+class Drawer
 {
-protected:
-    IDrawer() = default;
-
 public:
-    IDrawer(const IDrawer&) = delete;
-    IDrawer& operator=(const IDrawer&) = delete;
-    IDrawer(IDrawer&&) = delete;
-    IDrawer& operator=(IDrawer&&) = delete;
+    Drawer(const Drawer&) = delete;
+    Drawer& operator=(const Drawer&) = delete;
+    Drawer(Drawer&&) noexcept = default;
+    Drawer& operator=(Drawer&&) noexcept = default;
 
-    virtual ~IDrawer() = default;
+    virtual ~Drawer() = default;
 
     virtual void draw() = 0;
+
+protected:
+    Drawer();
 };
 
-class BasicTriangleDrawer final : public IDrawer 
+class BasicTriangleDrawer final : public Drawer 
 {
 public:
-    BasicTriangleDrawer(int width, int height);
+    BasicTriangleDrawer();
     ~BasicTriangleDrawer() = default;
 
     void draw() override;
@@ -33,10 +33,10 @@ private:
     unsigned int m_VAO = 0;
 };
 
-class BasicTextureDrawer final : public IDrawer
+class BasicTextureDrawer final : public Drawer
 {
 public:
-    BasicTextureDrawer(int width, int height);
+    BasicTextureDrawer();
     ~BasicTextureDrawer() = default;
 
     void draw() override;

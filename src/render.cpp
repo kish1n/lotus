@@ -4,22 +4,34 @@
 #include "glad/glad.h"
 #include "stb_image.h"
 
-BasicTriangleDrawer::BasicTriangleDrawer(int width, int height)
+extern bool WIREFRAME_MODE;
+extern int SCREEN_WIDTH;
+extern int SCREEN_HEIGHT;
+
+Drawer::Drawer()
 {
     if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress))
     {
         fatal("Failed to initialize GLAD\n");
     }
+    glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    if (WIREFRAME_MODE)
+    {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    }
+}
 
+BasicTriangleDrawer::BasicTriangleDrawer()
+{
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glViewport(0, 0, width, height);
 
     m_shaderProgram = ShaderProgram::compileBasicProgram();
 
     float vertices[] = {
-        -0.9f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,
-        0.0f, 0.5f, 0.0f};
+        0.0f, 0.5f, 0.0f, // top
+        0.5f, 0.5f, 0.0f, // top right
+        0.5f, 0.4f, 0.0f, // top right down
+        0.0f, 0.4f, 0.0f}; // top down
 
     glGenVertexArrays(1, &m_VAO);
     glBindVertexArray(m_VAO);
@@ -28,6 +40,13 @@ BasicTriangleDrawer::BasicTriangleDrawer(int width, int height)
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    unsigned int indices[] = {0, 1, 2,
+                              0, 2, 3};
+    unsigned int EBO;
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
@@ -39,23 +58,14 @@ void BasicTriangleDrawer::draw()
 {
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glUseProgram(m_shaderProgram);
     glBindVertexArray(m_VAO);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glUseProgram(m_shaderProgram);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-BasicTextureDrawer::BasicTextureDrawer(int width, int height)
+BasicTextureDrawer::BasicTextureDrawer()
 {
-    if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress))
-    {
-        fatal("Failed to initialize GLAD\n");
-    }
-
-    this->width = width;
-    this->height = height;
-
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glViewport(0, 0, width, height);
 
     const char* vertexShader = "./Content/shaders/texture.vert";
     const char* fragmentShader = "./Content/shaders/texture.frag";
@@ -105,7 +115,7 @@ BasicTextureDrawer::BasicTextureDrawer(int width, int height)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);  
 
     int textureWidth, textureHeight, nrChannels;
-    unsigned char *data = stbi_load("C:/Users/tiffa/repos/lotus/Content/lotus.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+    unsigned char *data = stbi_load("Content/lotus.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
 
     if (data)
     {

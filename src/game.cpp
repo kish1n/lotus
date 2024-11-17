@@ -1,8 +1,8 @@
 #include "lotus/game.h"
 #include "lotus/base.h"
 
-constexpr int SCREEN_WIDTH = 640;
-constexpr int SCREEN_HEIGHT = 480;
+extern int SCREEN_WIDTH;
+extern int SCREEN_HEIGHT;
 
 Game::Game()
 {
@@ -32,7 +32,7 @@ Game::Game()
         fatal("Failed to make current context! SDL_Error: %s\n", SDL_GetError());
     }
 
-    m_drawer = std::make_unique<BasicTextureDrawer>(SCREEN_WIDTH, SCREEN_HEIGHT);
+    m_drawer = std::make_unique<BasicTriangleDrawer>();
 
     SDL_Event e;
     bool running = true;
