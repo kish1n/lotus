@@ -29,7 +29,8 @@ public:
     void draw() override;
 
 private:
-    unsigned int m_shaderProgram = 0;
+    unsigned int m_shaderProgram1 = 0;
+    unsigned int m_shaderProgram2 = 0;
     unsigned int m_VAO = 0;
 };
 

@@ -76,22 +76,23 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     std::stringstream vertexBuffer;
     std::stringstream fragmentBuffer;
     
-    try
+    vertexStream.open(vertexPath, std::ios_base::in);
+    if (vertexStream.is_open() == false)
     {
-        vertexStream.open(vertexPath, std::ios_base::in);
-        vertexBuffer << vertexStream.rdbuf();
-        vertexShaderSource = vertexBuffer.str();
-        vertexStream.close();
+        fatal("Failed to open vertex shader file %s", vertexPath);
+    }
+    vertexBuffer << vertexStream.rdbuf();
+    vertexShaderSource = vertexBuffer.str();
+    vertexStream.close();
 
-        fragmentStream.open(fragmentPath, std::ios_base::in);
-        fragmentBuffer << fragmentStream.rdbuf();
-        fragmentShaderSource = fragmentBuffer.str();
-        fragmentStream.close();
-    }
-    catch(const std::exception& e)
+    fragmentStream.open(fragmentPath, std::ios_base::in);
+    if (fragmentStream.is_open() == false)
     {
-        fatal("Failed to open shader files %s, %s", vertexPath, fragmentPath);
+        fatal("Failed to open fragment shader file %s", fragmentPath);
     }
+    fragmentBuffer << fragmentStream.rdbuf();
+    fragmentShaderSource = fragmentBuffer.str();
+    fragmentStream.close();
 
     id = ShaderProgram::compileProgram(vertexShaderSource.c_str(), fragmentShaderSource.c_str());
 }

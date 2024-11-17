@@ -59,6 +59,9 @@
         "cstdarg": "cpp",
         "fstream": "cpp",
         "iomanip": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "chrono": "cpp",
+        "forward_list": "cpp",
+        "ratio": "cpp"
     }
 }

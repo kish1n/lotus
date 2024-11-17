@@ -25,7 +25,13 @@ BasicTriangleDrawer::BasicTriangleDrawer()
 {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
-    m_shaderProgram = ShaderProgram::compileBasicProgram();
+    const char* vertexShaderPath = "./Content/shaders/basic.vert";
+    const char* redFragmentShaderPath = "./Content/shaders/red.frag";
+    const char* blueFragmentShaderPath = "./Content/shaders/blue.frag";
+    const char* dynamicFragmentShaderPath = "./Content/shaders/dynamic.frag";
+
+    m_shaderProgram1 = Shader(vertexShaderPath, dynamicFragmentShaderPath).getId();
+    m_shaderProgram2 = Shader(vertexShaderPath, blueFragmentShaderPath).getId();
 
     float vertices[] = {
         0.0f, 0.5f, 0.0f, // top
@@ -59,8 +65,16 @@ void BasicTriangleDrawer::draw()
     glClear(GL_COLOR_BUFFER_BIT);
 
     glBindVertexArray(m_VAO);
-    glUseProgram(m_shaderProgram);
+    glUseProgram(m_shaderProgram1);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    //glUseProgram(m_shaderProgram2);
+    //glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, (void*)(3 * sizeof(unsigned int)));
+
+    GLenum err;
+    while((err = glGetError()) != GL_NO_ERROR)
+    {
+        fatal("OpenGL error: %d\n", err);
+    }
 }
 
 BasicTextureDrawer::BasicTextureDrawer()
