@@ -35,4 +35,11 @@ target_link_libraries(lotus
 
 add_subdirectory(external)
 
-file(COPY ${CMAKE_SOURCE_DIR}/Content DESTINATION ${CMAKE_BINARY_DIR})
+add_custom_target(copy_content
+    COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different
+    ${CMAKE_SOURCE_DIR}/Content
+    $<TARGET_FILE_DIR:lotus>/Content
+    COMMENT "Copying content to build directory"
+)
+
+add_dependencies(lotus copy_content)
