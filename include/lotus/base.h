@@ -15,3 +15,10 @@ void fatal(SDL_PRINTF_FORMAT_STRING const char *fmt, Args&&... args)
 }
 
 #pragma clang diagnostic pop
+
+struct CONFIG
+{
+    inline static bool WIREFRAME_MODE = false;
+    inline static int SCREEN_WIDTH = 640;
+    inline static int SCREEN_HEIGHT = 480;
+};

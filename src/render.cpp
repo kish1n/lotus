@@ -4,18 +4,14 @@
 #include "glad/glad.h"
 #include "stb_image.h"
 
-extern bool WIREFRAME_MODE;
-extern int SCREEN_WIDTH;
-extern int SCREEN_HEIGHT;
-
 Drawer::Drawer()
 {
     if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress))
     {
         fatal("Failed to initialize GLAD\n");
     }
-    glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    if (WIREFRAME_MODE)
+    glViewport(0, 0, CONFIG::SCREEN_WIDTH, CONFIG::SCREEN_HEIGHT);
+    if (CONFIG::WIREFRAME_MODE)
     {
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     }
@@ -26,12 +22,9 @@ BasicTriangleDrawer::BasicTriangleDrawer()
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
     const char* vertexShaderPath = "./Content/shaders/basic.vert";
-    const char* redFragmentShaderPath = "./Content/shaders/red.frag";
-    const char* blueFragmentShaderPath = "./Content/shaders/blue.frag";
     const char* dynamicFragmentShaderPath = "./Content/shaders/dynamic.frag";
 
     m_shaderProgram1 = Shader(vertexShaderPath, dynamicFragmentShaderPath).getId();
-    m_shaderProgram2 = Shader(vertexShaderPath, blueFragmentShaderPath).getId();
 
     float vertices[] = {
         0.0f, 0.5f, 0.0f, // top
@@ -67,8 +60,6 @@ void BasicTriangleDrawer::draw()
     glBindVertexArray(m_VAO);
     glUseProgram(m_shaderProgram1);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-    //glUseProgram(m_shaderProgram2);
-    //glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, (void*)(3 * sizeof(unsigned int)));
 
     GLenum err;
     while((err = glGetError()) != GL_NO_ERROR)

@@ -4,9 +4,6 @@
 #include <chrono>
 #include <algorithm>
 
-extern int SCREEN_WIDTH;
-extern int SCREEN_HEIGHT;
-
 Game::Game()
 {
     if (!SDL_Init(SDL_INIT_VIDEO))
@@ -15,7 +12,7 @@ Game::Game()
     }
 
     // Create window
-    m_window = SDL_CreateWindow("SDL Tutorial", SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+    m_window = SDL_CreateWindow("SDL Tutorial", CONFIG::SCREEN_WIDTH, CONFIG::SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
     if (m_window == NULL)
     {
         fatal("Window could not be created! SDL_Error: %s\n", SDL_GetError());
