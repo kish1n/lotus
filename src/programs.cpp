@@ -30,7 +30,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     if (!success)
     {
         glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        fatal("Failed to compile shader. Error: %s\n", infoLog);
+        fatal("Failed to compile vertex shader. %s\n", infoLog);
     }
 
     unsigned int fragmentShader;
@@ -42,7 +42,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     if (!success)
     {
         glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-        fatal("Failed to compile shader. Error: %s\n", infoLog);
+        fatal("Failed to compile fragment shader. %s\n", infoLog);
     }
 
     unsigned int shaderProgram = glCreateProgram();

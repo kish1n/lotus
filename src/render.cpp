@@ -31,7 +31,6 @@ BasicTriangleDrawer::BasicTriangleDrawer()
     const char* dynamicFragmentShaderPath = "./Content/shaders/dynamic.frag";
 
     m_shaderProgram1 = Shader(vertexShaderPath, dynamicFragmentShaderPath).getId();
-    m_shaderProgram2 = Shader(vertexShaderPath, blueFragmentShaderPath).getId();
 
     float vertices[] = {
         0.0f, 0.5f, 0.0f, // top
