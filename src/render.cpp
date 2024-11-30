@@ -6,15 +6,6 @@
 
 Drawer::Drawer()
 {
-    if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress))
-    {
-        fatal("Failed to initialize GLAD\n");
-    }
-    glViewport(0, 0, CONFIG::SCREEN_WIDTH, CONFIG::SCREEN_HEIGHT);
-    if (CONFIG::WIREFRAME_MODE)
-    {
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    }
 }
 
 BasicTriangleDrawer::BasicTriangleDrawer()

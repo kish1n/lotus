@@ -14,9 +14,10 @@ target_sources(lotus
     PRIVATE
         src/main.cpp
         src/render.cpp
-        src/game.cpp
         src/programs.cpp
         src/stb_image.cpp
+        src/RenderManager.cpp
+        src/GameLoop.cpp
 )
 
 target_include_directories(lotus
