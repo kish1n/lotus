@@ -18,6 +18,7 @@ target_sources(lotus
         src/stb_image.cpp
         src/RenderManager.cpp
         src/GameLoop.cpp
+        src/State.cpp
 )
 
 target_include_directories(lotus
