@@ -8,3 +8,4 @@ Update PATH with Clang, CMake, Ninja, and set VCPKG_ROOT env var.
 
 How to build:
 cmake -G Ninja -B build .
+cmake --build build
