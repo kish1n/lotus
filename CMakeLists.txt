@@ -19,6 +19,7 @@ target_sources(lotus
         src/RenderManager.cpp
         src/GameLoop.cpp
         src/State.cpp
+        src/GameLoop.cpp
 )
 
 target_include_directories(lotus

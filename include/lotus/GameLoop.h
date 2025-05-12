@@ -1,11 +1,12 @@
 #pragma once
 
 class RenderManager;
+class State;
 
 class GameLoop
 {
 public:
-    GameLoop(RenderManager* renderManager) : m_renderManager(renderManager) {}
+    GameLoop(RenderManager* renderManager, State* state) : m_renderManager(renderManager), m_state(state) {}
     virtual ~GameLoop() = default;
 
     GameLoop(const GameLoop&) = delete;
@@ -16,4 +17,5 @@ public:
     int execute();
 private:
     RenderManager* m_renderManager = nullptr;
+    State* m_state = nullptr;
 };

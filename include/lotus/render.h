@@ -3,6 +3,7 @@
 #include <memory>
 
 class Shader;
+class State;
 
 class Drawer
 {
@@ -14,7 +15,7 @@ public:
 
     virtual ~Drawer() = default;
 
-    virtual void draw() = 0;
+    virtual void draw(State* state) = 0;
 
 protected:
     Drawer();
@@ -26,7 +27,7 @@ public:
     BasicTriangleDrawer();
     ~BasicTriangleDrawer() = default;
 
-    void draw() override;
+    void draw(State* state) override;
 
 private:
     unsigned int m_shaderProgram1 = 0;
@@ -40,7 +41,7 @@ public:
     BasicTextureDrawer();
     ~BasicTextureDrawer() = default;
 
-    void draw() override;
+    void draw(State* state) override;
 private:
     std::shared_ptr<Shader> m_shader;
     unsigned int m_VAO;

@@ -32,7 +32,7 @@ int GameLoop::execute()
 
         std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
 
-        m_renderManager->render();
+        m_renderManager->render(m_state);
         
         std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double, std::milli> timeSpan = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(end - start);

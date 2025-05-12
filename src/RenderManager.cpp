@@ -44,9 +44,9 @@ RenderManager::RenderManager()
     m_drawer = std::make_unique<BasicTriangleDrawer>();
 }
 
-void RenderManager::render()
+void RenderManager::render(State* state)
 {
-    m_drawer->draw();
+    m_drawer->draw(state);
     SDL_GL_SwapWindow(m_window);
 }
 

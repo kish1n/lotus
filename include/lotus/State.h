@@ -1,22 +1,12 @@
 #pragma once
 
 #include <vector>
-
-class Controller
-{
-public:
-    Controller();
-
-private:
-    std::vector<float> m_vertices;
-    unsigned int m_VAO;
-};
+#include "lotus/GameObject.h"
 
 class State
 {
 public:
-    State();
+    State() = default;
 
-private:
-    Controller m_controller;
+    std::vector<GameObject*> objs;
 };
