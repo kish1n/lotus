@@ -27,7 +27,7 @@ jobs:
         -B build
         -DCMAKE_CXX_COMPILER=clang++
         -DCMAKE_C_COMPILER=clang
-        --toolchain="$VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
+        --toolchain="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
         .
 
     - name: Build
