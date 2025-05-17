@@ -26,9 +26,6 @@ jobs:
         cmake
         -G Ninja
         -B build
-        -DCMAKE_CXX_COMPILER=clang++
-        -DCMAKE_C_COMPILER=clang
-        -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
         -DCMAKE_CXX_FLAGS="-fprofile-instr-generate -fcoverage-mapping"
         .
 
@@ -38,8 +35,6 @@ jobs:
 
     - name: Run
       working-directory: build
-      # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ./lotus.exe
       continue-on-error: true
 
