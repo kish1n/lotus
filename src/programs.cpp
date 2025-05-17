@@ -26,7 +26,10 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     std::cout << "Fragment shader source: " << fragmentShaderSource << std::endl;
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
+
+    std::cout << "a" << std::endl;
     glCompileShader(vertexShader);
+    std::cout << "b" << std::endl;
 
     int success;
     char infoLog[512];
