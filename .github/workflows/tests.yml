@@ -35,7 +35,7 @@ jobs:
 
     - name: Run
       working-directory: build
-      run: ./lotus.exe
+      run: ./lotus.exe -w
       continue-on-error: true
 
     - name: Create coverage reports
