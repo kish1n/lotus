@@ -1,5 +1,5 @@
 # lotus
-Repository for the Lotus 3d game engine
+Repository for the Lotus 2d game engine
 
 Requirements for Windows:
 Visual Studio: C++ tools for Desktop, Clang, Vcpkg, Git
