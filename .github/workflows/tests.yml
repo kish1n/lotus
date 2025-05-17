@@ -17,7 +17,7 @@ jobs:
 
     - name: Check vcpkg env var in gha
       run: |
-        echo $VCPKG_INSTALLATION_ROOT
+        echo env:$VCPKG_INSTALLATION_ROOT
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
@@ -27,7 +27,7 @@ jobs:
         -B build
         -DCMAKE_CXX_COMPILER=clang++
         -DCMAKE_C_COMPILER=clang
-        --toolchain="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
+        --toolchain=env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake
         .
 
     - name: Build
