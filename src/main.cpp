@@ -9,8 +9,8 @@ using namespace std;
 int main(int argc, char** args)
 {
     GameObject triangle;
-    triangle.x = 0.4;
-    triangle.y = 0.4;
+    triangle.x = -0.1;
+    triangle.y = -0.1;
     triangle.width = 0.2;
     triangle.height = 0.2;
 
