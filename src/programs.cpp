@@ -24,6 +24,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     std::cout << "Beginning compilation of shader program" << std::endl;
     std::cout << "Vertex shader source: " << vertexShaderSource << std::endl;
     std::cout << "Fragment shader source: " << fragmentShaderSource << std::endl;
+    std::cout << "huh" << std::endl;
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
     std::cout << "c" << std::endl;
     glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
