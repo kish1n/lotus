@@ -62,7 +62,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
         fatal(std::format("Failed to link program. Error: {}", infoLog));
     }
 
-    std::cout << "Shader program linked successfully" << std::endl;
+    std::cerr << "Shader program linked successfully" << std::endl;
 
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
