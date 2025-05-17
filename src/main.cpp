@@ -8,14 +8,11 @@ using namespace std;
 
 int main(int argc, char** args)
 {
-    GameObject triangle;
-    triangle.x = -0.1;
-    triangle.y = -0.1;
-    triangle.width = 0.2;
-    triangle.height = 0.2;
+    GameObject sq1;
+    GameObject sq2(0.1, 0.1);
 
     State state;
-    state.objs.emplace_back(&triangle);
+    state.objs.insert(state.objs.end(), {&sq1, &sq2});
     RenderManager renderManager;
     GameLoop gameLoop(&renderManager, &state);
 

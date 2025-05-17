@@ -50,9 +50,9 @@ void BasicTriangleDrawer::draw(State* state)
     glClear(GL_COLOR_BUFFER_BIT);
 
     std::vector<float> vertices;
-    vertices.reserve(state->objs.size() * 4);
+    vertices.reserve(state->objs.size() * 12); // 4 vertex per gameobject, 3 floats per vertex
     int ptr = 0;
-    for (int i = 0; i < std::min(3, (int)state->objs.size()); i++) {
+    for (int i = 0; i < state->objs.size(); i++) {
         GameObject& obj = *state->objs[i];
         std::vector<float> here = {
             obj.x, obj.y, 0,
@@ -71,20 +71,29 @@ void BasicTriangleDrawer::draw(State* state)
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(decltype(vertices)::value_type), vertices.data(), GL_STATIC_DRAW);
 
-    unsigned int indices[] = {0, 1, 2,
-        1, 2, 3};
+    std::vector<unsigned int> indices;
+    for (int i = 0; i < state->objs.size(); i++) {
+        GameObject& obj = *state->objs[i];
+        unsigned int offset = i * 4;
+        std::vector<unsigned int> here = {
+            offset, offset + 1, offset + 2,
+            offset + 1, offset + 2, offset + 3
+        };
+        indices.insert(indices.end(), here.begin(), here.end());
+    }
+
         
     unsigned int EBO;
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(decltype(indices)::value_type), indices.data(), GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*) 0);
     glEnableVertexAttribArray(0);
 
-    
+    int numVertices = state->objs.size() * 6; // 3 for each triangle, 2 triangles per gameobject
     glUseProgram(m_shaderProgram1);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, numVertices, GL_UNSIGNED_INT, 0);
 
     GLenum err;
     while((err = glGetError()) != GL_NO_ERROR)
