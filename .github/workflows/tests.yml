@@ -28,6 +28,7 @@ jobs:
         -DCMAKE_CXX_COMPILER=clang++
         -DCMAKE_C_COMPILER=clang
         -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
+        -DCMAKE_CXX_FLAGS="-fprofile-instr-generate -fcoverage-mapping"
         .
 
     - name: Build
@@ -35,10 +36,16 @@ jobs:
       run: cmake --build build
 
     - name: Test
-      working-directory: build
+      working-directory: build/Debug
       # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: Debug/lotus.exe
+      run: lotus.exe
+
+    - name: Create coverage reports
+      working-directory: build/Debug
+      run: >
+        llvm-profdata merge ./default.profraw -o default.profdata
+        llvm-cov export --instr-profile=./default.profdata -format=lcov ./lotus.exe -o coverage.lcov
       
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v5
