@@ -3,11 +3,19 @@
 #include "lotus/State.h"
 
 #include <cstring>
+#include <exception>
+#include <chrono>
+#include <future>
+#include <iostream>
 
 using namespace std;
 
+void timeout(int seconds);
+
 int main(int argc, char** args)
 {
+    auto fut = std::async(std::launch::async, timeout, 5);
+
     GameObject sq1;
     GameObject sq2(0.1, 0.1);
 
@@ -25,4 +33,10 @@ int main(int argc, char** args)
     }
 
     return gameLoop.execute();
+}
+
+void timeout(int seconds) {
+    std::this_thread::sleep_for(std::chrono::seconds(seconds));
+    std::cerr << "Timeout reached. Terminating program.\n";
+    std::exit(0);
 }
