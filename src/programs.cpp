@@ -34,6 +34,8 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
         fatal(std::format("Failed to compile vertex shader. {}", infoLog));
     }
 
+    std::cout << "Vertex shader compiled successfully" << std::endl;
+
     unsigned int fragmentShader;
     fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
@@ -46,6 +48,8 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
         fatal(std::format("Failed to compile fragment shader. {}", infoLog));
     }
 
+    std::cout << "Fragment shader compiled successfully" << std::endl;
+
     unsigned int shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
@@ -57,6 +61,8 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
         glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
         fatal(std::format("Failed to link program. Error: {}", infoLog));
     }
+
+    std::cout << "Shader program linked successfully" << std::endl;
 
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
