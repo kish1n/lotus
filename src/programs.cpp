@@ -21,6 +21,9 @@ unsigned int compileBasicProgram()
 
 unsigned int compileProgram(const char* vertexShaderSource, const char* fragmentShaderSource)
 {
+    std::cout << "Beginning compilation of shader program" << std::endl;
+    std::cout << "Vertex shader source: " << vertexShaderSource << std::endl;
+    std::cout << "Fragment shader source: " << fragmentShaderSource << std::endl;
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
     glCompileShader(vertexShader);
@@ -86,12 +89,10 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     std::stringstream fragmentBuffer;
     
     vertexStream.open(vertexPath, std::ios_base::in);
-    std::cerr << "a" << std::endl;
     if (vertexStream.is_open() == false)
     {
         fatal(std::format("Failed to open vertex shader file {}", vertexPath));
     }
-    std::cout << "b" << std::endl;
     vertexBuffer << vertexStream.rdbuf();
     vertexShaderSource = vertexBuffer.str();
     vertexStream.close();
