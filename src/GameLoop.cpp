@@ -43,6 +43,6 @@ int GameLoop::execute()
         res.push_back(fps);
     }
     std::sort(res.begin(), res.end());
-    SDL_Log("Median FPS: %f", res[res.size() / 2]);
+    std::cout << std::format("Median FPS: {}", res[res.size() / 2]) << std::endl;
     return 0;
 }

@@ -4,8 +4,10 @@
 #include "lotus/State.h"
 #include "glad/glad.h"
 #include "stb_image.h"
+#include "SDL3/SDL.h"
 
 #include <iostream>
+#include <format>
 
 Drawer::Drawer()
 {
@@ -104,7 +106,7 @@ void BasicTriangleDrawer::draw(State* state)
     GLenum err;
     while((err = glGetError()) != GL_NO_ERROR)
     {
-        fatal("OpenGL error: %d\n", err);
+        fatal(std::format("OpenGL error: {}", err));
     }
 }
 

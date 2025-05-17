@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <format>
 
 namespace ShaderProgram
 {
@@ -30,7 +31,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     if (!success)
     {
         glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        fatal("Failed to compile vertex shader. %s\n", infoLog);
+        fatal(std::format("Failed to compile vertex shader. {}", infoLog));
     }
 
     unsigned int fragmentShader;
@@ -42,7 +43,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     if (!success)
     {
         glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-        fatal("Failed to compile fragment shader. %s\n", infoLog);
+        fatal(std::format("Failed to compile fragment shader. {}", infoLog));
     }
 
     unsigned int shaderProgram = glCreateProgram();
@@ -54,7 +55,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     if (!success)
     {
         glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        fatal("Failed to link program. Error: %s\n", infoLog);
+        fatal(std::format("Failed to link program. Error: {}", infoLog));
     }
 
     glDeleteShader(vertexShader);
@@ -79,7 +80,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     vertexStream.open(vertexPath, std::ios_base::in);
     if (vertexStream.is_open() == false)
     {
-        fatal("Failed to open vertex shader file %s", vertexPath);
+        fatal(std::format("Failed to open vertex shader file {}", vertexPath));
     }
     vertexBuffer << vertexStream.rdbuf();
     vertexShaderSource = vertexBuffer.str();
@@ -88,7 +89,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     fragmentStream.open(fragmentPath, std::ios_base::in);
     if (fragmentStream.is_open() == false)
     {
-        fatal("Failed to open fragment shader file %s", fragmentPath);
+        fatal(std::format("Failed to open fragment shader file {}", fragmentPath));
     }
     fragmentBuffer << fragmentStream.rdbuf();
     fragmentShaderSource = fragmentBuffer.str();

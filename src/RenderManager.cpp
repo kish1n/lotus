@@ -5,6 +5,7 @@
 #include "lotus/render.h"
 
 #include <iostream>
+#include <format>
 
 constexpr int STARTING_SCREEN_WIDTH = 640;
 constexpr int STARTING_SCREEN_HEIGHT = 480;
@@ -15,13 +16,13 @@ RenderManager::RenderManager()
 
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
-        fatal("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        fatal(std::format("SDL could not initialize! SDL_Error: {}", SDL_GetError()));
     }
 
     m_window = SDL_CreateWindow("SDL Tutorial", STARTING_SCREEN_WIDTH, STARTING_SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
     if (!m_window)
     {
-        fatal("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+        fatal(std::format("Window could not be created! SDL_Error: {}", SDL_GetError()));
     }
 
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
@@ -31,16 +32,16 @@ RenderManager::RenderManager()
     SDL_GLContext glContext = SDL_GL_CreateContext(m_window);
     if (!glContext)
     {
-        fatal("OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
+        fatal(std::format("OpenGL context could not be created! SDL_Error: {}", SDL_GetError()));
     }
     if (!SDL_GL_MakeCurrent(m_window, glContext))
     {
-        fatal("Failed to make current context! SDL_Error: %s\n", SDL_GetError());
+        fatal(std::format("Failed to make current context! SDL_Error: {}", SDL_GetError()));
     }
 
     if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress))
     {
-        fatal("Failed to initialize GLAD\n");
+        fatal("Failed to initialize GLAD");
     }
 
     glViewport(0, 0, STARTING_SCREEN_WIDTH, STARTING_SCREEN_HEIGHT);

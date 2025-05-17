@@ -1,17 +1,10 @@
 #pragma once
 
-#include "SDL3/SDL.h"
-
+#include <iostream>
 #include <exception>
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wformat-security"
-
-template<typename... Args>
-void fatal(SDL_PRINTF_FORMAT_STRING const char *fmt, Args&&... args)
+inline void fatal(std::string err)
 {
-    SDL_LogCritical(0, fmt, std::forward<Args>(args)...);
+    std::cerr << err << std::endl;
     std::terminate();
 }
-
-#pragma clang diagnostic pop
