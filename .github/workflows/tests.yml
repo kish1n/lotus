@@ -45,7 +45,7 @@ jobs:
 
     - name: Create coverage reports
       working-directory: build
-      run: >
+      run: |
         llvm-profdata merge ./default.profraw -o default.profdata
         llvm-cov export --instr-profile=./default.profdata --format=lcov ./lotus.exe -o coverage.lcov
       
