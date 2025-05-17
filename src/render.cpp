@@ -5,12 +5,16 @@
 #include "glad/glad.h"
 #include "stb_image.h"
 
+#include <iostream>
+
 Drawer::Drawer()
 {
 }
 
 BasicTriangleDrawer::BasicTriangleDrawer()
 {
+    std::cout << "BasicTriangleDrawer() - START" << std::endl;
+
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
     const char* vertexShaderPath = "./Content/shaders/basic.vert";
@@ -43,6 +47,8 @@ BasicTriangleDrawer::BasicTriangleDrawer()
     glEnableVertexAttribArray(0);
 
     glBindVertexArray(0);
+
+    std::cout << "BasicTriangleDrawer() - END" << std::endl;
 }
 
 void BasicTriangleDrawer::draw(State* state)

@@ -5,9 +5,12 @@
 #include <algorithm>
 #include <chrono>
 #include <vector>
+#include <iostream>
 
 int GameLoop::execute()
 {
+    std::cout << "Entering game loop..." << std::endl;
+
     SDL_Event e;
     bool running = true;
 

@@ -4,11 +4,15 @@
 #include "lotus/base.h"
 #include "lotus/render.h"
 
+#include <iostream>
+
 constexpr int STARTING_SCREEN_WIDTH = 640;
 constexpr int STARTING_SCREEN_HEIGHT = 480;
 
 RenderManager::RenderManager()
 {
+    std::cout << "RenderManager() - START" << std::endl;
+
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
         fatal("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -42,6 +46,8 @@ RenderManager::RenderManager()
     glViewport(0, 0, STARTING_SCREEN_WIDTH, STARTING_SCREEN_HEIGHT);
 
     m_drawer = std::make_unique<BasicTriangleDrawer>();
+
+    std::cout << "RenderManager() - END" << std::endl;
 }
 
 void RenderManager::render(State* state)

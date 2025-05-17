@@ -70,6 +70,9 @@
         "stop_token": "cpp",
         "thread": "cpp",
         "xtree": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "condition_variable": "cpp",
+        "resumable": "cpp",
+        "mutex": "cpp"
     }
 }
