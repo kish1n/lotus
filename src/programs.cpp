@@ -86,7 +86,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     std::stringstream fragmentBuffer;
     
     vertexStream.open(vertexPath, std::ios_base::in);
-    std::cout << "a" << std::endl;
+    std::cerr << "a" << std::endl;
     if (vertexStream.is_open() == false)
     {
         fatal(std::format("Failed to open vertex shader file {}", vertexPath));
