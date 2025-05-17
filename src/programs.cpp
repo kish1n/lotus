@@ -68,6 +68,8 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath)
 {
+    std::cout << "Loading shader from " << vertexPath << " and " << fragmentPath << std::endl;
+
     std::string vertexShaderSource;
     std::string fragmentShaderSource;
 
@@ -96,6 +98,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     fragmentStream.close();
 
     id = ShaderProgram::compileProgram(vertexShaderSource.c_str(), fragmentShaderSource.c_str());
+    std::cout << "Shader loaded successfully" << std::endl;
 }
 
 void Shader::use()
