@@ -14,6 +14,7 @@ void timeout(int seconds);
 
 int main(int argc, char** args)
 {
+    std::cout << "Starting Lotus Game Engine Testing Playground..." << std::endl;
     auto fut = std::async(std::launch::async, timeout, 5);
 
     GameObject sq1;
