@@ -10,3 +10,4 @@ find_package(Stb REQUIRED)
 
 add_subdirectory(lotus)
 add_subdirectory(external)
+add_subdirectory(games)
