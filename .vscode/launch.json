@@ -2,11 +2,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "debug",
+            "name": "playground",
             "type": "cppvsdbg",
             "cwd": "${workspaceFolder}",
             "request": "launch",
-            "program": "${workspaceFolder}/build/lotus.exe",
+            "program": "${workspaceFolder}/build/lotus/playground.exe",
             "sourceFileMap": {
                 ".": "${workspaceFolder}"
             }

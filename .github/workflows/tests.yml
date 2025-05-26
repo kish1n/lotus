@@ -34,16 +34,16 @@ jobs:
       run: cmake --build build
 
     - name: Run
-      working-directory: build
-      run: ./lotus.exe -w
+      working-directory: build/lotus
+      run: ./playground.exe -w
       continue-on-error: true
 
     - name: Create coverage reports
-      working-directory: build
+      working-directory: build/lotus
       shell: bash
       run: |
         llvm-profdata merge ./default.profraw -o default.profdata
-        llvm-cov export --instr-profile=./default.profdata --format=lcov ./lotus.exe > coverage.lcov
+        llvm-cov export --instr-profile=./default.profdata --format=lcov ./playground.exe > coverage.lcov
       
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v5
