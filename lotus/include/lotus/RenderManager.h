@@ -1,5 +1,6 @@
 #pragma once
 
+#include <lotus/render.h>
 #include <memory>
 
 struct SDL_Window;
