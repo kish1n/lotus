@@ -1,11 +1,12 @@
 # lotus
-Repository for the Lotus 2d game engine
+Repository for the Lotus 2D game engine
 
-Requirements for Windows:
-Visual Studio: C++ tools for Desktop, Clang, Vcpkg, Git
+Basic Setup for Windows:
+1. Install llvm-mingw (https://github.com/mstorsjo/llvm-mingw)
+2. Setup PATH
+3. cmake -G Ninja -B build .
+4. cd build
+5. ninja \<target>
 
-Update PATH with Clang, CMake, Ninja, and set VCPKG_ROOT env var.
-
-How to build:
-cmake -G Ninja -B build .
-cmake --build build
+Current available targets:
+`lotus`, `playground`, `brick-breaker`
