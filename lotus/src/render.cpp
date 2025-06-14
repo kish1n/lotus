@@ -6,8 +6,7 @@
 #include "stb_image.h"
 #include "SDL3/SDL.h"
 
-#include <iostream>
-#include <format>
+import std;
 
 Drawer::Drawer()
 {

@@ -2,11 +2,7 @@
 #include "lotus/base.h"
 #include "glad/glad.h"
 
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <iostream>
-#include <format>
+import std;
 
 namespace ShaderProgram
 {
@@ -36,7 +32,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
     if (!success)
     {
-        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+        glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
         fatal(std::format("Failed to compile vertex shader. {}", infoLog));
     }
 
@@ -50,7 +46,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
     if (!success)
     {
-        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+        glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
         fatal(std::format("Failed to compile fragment shader. {}", infoLog));
     }
 
@@ -64,7 +60,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
     if (!success)
     {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+        glGetProgramInfoLog(shaderProgram, 512, nullptr, infoLog);
         fatal(std::format("Failed to link program. Error: {}", infoLog));
     }
 

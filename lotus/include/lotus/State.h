@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+import std;
 #include "lotus/GameObject.h"
 
 class State

@@ -4,8 +4,7 @@
 #include "lotus/base.h"
 #include "lotus/render.h"
 
-#include <iostream>
-#include <format>
+import std;
 
 constexpr int STARTING_SCREEN_WIDTH = 640;
 constexpr int STARTING_SCREEN_HEIGHT = 480;

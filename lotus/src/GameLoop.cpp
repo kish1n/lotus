@@ -2,10 +2,7 @@
 #include "lotus/RenderManager.h"
 #include "SDL3/SDL.h"
 
-#include <algorithm>
-#include <chrono>
-#include <vector>
-#include <iostream>
+import std;
 
 int GameLoop::execute()
 {

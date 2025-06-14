@@ -2,11 +2,7 @@
 #include "lotus/GameLoop.h"
 #include "lotus/State.h"
 
-#include <cstring>
-#include <exception>
-#include <chrono>
-#include <future>
-#include <iostream>
+import std;
 
 using namespace std;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lotus/render.h>
-#include <memory>
+import std;
 
 struct SDL_Window;
 class Drawer;

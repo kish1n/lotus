@@ -1,7 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <exception>
+import std;
 
 inline void fatal(std::string err)
 {
