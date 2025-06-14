@@ -1,8 +1,9 @@
-#include "lotus/RenderManager.h"
+/*#include "lotus/RenderManager.h"
 #include "lotus/GameLoop.h"
-#include "lotus/State.h"
+#include "lotus/State.h"*/
 
 import std;
+import lotus;
 
 using namespace std;
 

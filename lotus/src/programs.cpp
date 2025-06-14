@@ -1,8 +1,13 @@
-#include "lotus/programs.h"
-#include "lotus/base.h"
+module;
+/*#include "lotus/programs.h"
+#include "lotus/base.cppm"*/
 #include "glad/glad.h"
 
+module lotus;
+
 import std;
+import :programs;
+import :base;
 
 namespace ShaderProgram
 {

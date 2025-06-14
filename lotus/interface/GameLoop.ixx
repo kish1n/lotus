@@ -1,9 +1,9 @@
-#pragma once
+export module lotus:GameLoop;
 
 class RenderManager;
 class State;
 
-class GameLoop
+export class GameLoop
 {
 public:
     GameLoop(RenderManager* renderManager, State* state) : m_renderManager(renderManager), m_state(state) {}

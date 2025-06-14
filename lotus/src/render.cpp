@@ -1,12 +1,15 @@
-#include "lotus/render.h"
-#include "lotus/base.h"
-#include "lotus/programs.h"
-#include "lotus/State.h"
+module;
 #include "glad/glad.h"
 #include "stb_image.h"
 #include "SDL3/SDL.h"
 
+module lotus;
+
 import std;
+import :render;
+import :base;
+import :programs;
+import :State;
 
 Drawer::Drawer()
 {

@@ -1,9 +1,10 @@
-#pragma once
+export module lotus:State;
 
 import std;
-#include "lotus/GameObject.h"
 
-class State
+class GameObject;
+
+export class State
 {
 public:
     State() = default;

@@ -1,11 +1,11 @@
-#pragma once
+export module lotus:render;
 
 import std;
 
 class Shader;
 class State;
 
-class Drawer
+export class Drawer
 {
 public:
     Drawer(const Drawer&) = delete;
@@ -21,7 +21,7 @@ protected:
     Drawer();
 };
 
-class BasicTriangleDrawer final : public Drawer 
+export class BasicTriangleDrawer final : public Drawer
 {
 public:
     BasicTriangleDrawer();
@@ -35,7 +35,7 @@ private:
     unsigned int m_VAO = 0;
 };
 
-class BasicTextureDrawer final : public Drawer
+export class BasicTextureDrawer final : public Drawer
 {
 public:
     BasicTextureDrawer();

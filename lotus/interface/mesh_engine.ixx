@@ -1,6 +1,6 @@
-#pragma once
+export module lotus:mesh_engine;
 
-class MeshEngine
+export class MeshEngine
 {
 public:
     MeshEngine() = default;

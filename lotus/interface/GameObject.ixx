@@ -1,6 +1,6 @@
-#pragma once
+export module lotus:GameObject;
 
-class GameObject
+export class GameObject
 {
 public:
     GameObject() = default;

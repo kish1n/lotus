@@ -1,13 +1,13 @@
-#pragma once
+export module lotus:RenderManager;
 
-#include <lotus/render.h>
 import std;
+import :render;
 
 struct SDL_Window;
 class Drawer;
 class State;
 
-class RenderManager
+export class RenderManager
 {
 public:
     RenderManager();

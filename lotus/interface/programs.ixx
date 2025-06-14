@@ -1,13 +1,13 @@
-#pragma once
+export module lotus:programs;
 
-namespace ShaderProgram
+export namespace ShaderProgram
 {
 
 unsigned int compileBasicProgram();
 
 } // namespace ShaderProgram
 
-class Shader
+export class Shader
 {
 public:
     Shader() = delete;
