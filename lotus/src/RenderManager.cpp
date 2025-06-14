@@ -1,14 +1,13 @@
 module;
-//#include "lotus/RenderManager.h"
 #include "glad/glad.h"
 #include "SDL3/SDL.h"
-/*#include "lotus/base.cppm"
-#include "lotus/render.h"*/
-
-import std;
-import lotus;
 
 module lotus;
+
+import std;
+import :base;
+import :render;
+import :RenderManager;
 
 constexpr int STARTING_SCREEN_WIDTH = 640;
 constexpr int STARTING_SCREEN_HEIGHT = 480;

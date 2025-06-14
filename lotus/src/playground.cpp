@@ -1,7 +1,3 @@
-/*#include "lotus/RenderManager.h"
-#include "lotus/GameLoop.h"
-#include "lotus/State.h"*/
-
 import std;
 import lotus;
 

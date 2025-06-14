@@ -1,13 +1,12 @@
 module;
 
-/*#include "lotus/GameLoop.h"
-#include "lotus/RenderManager.h"*/
-import lotus;
 #include "SDL3/SDL.h"
 
 module lotus;
 
 import std;
+import :GameLoop;
+import :RenderManager;
 
 int GameLoop::execute()
 {
