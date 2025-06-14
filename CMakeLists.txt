@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.27.2)
+cmake_minimum_required(VERSION 3.30)
 
 include(cmake/toolchain.cmake)
 
