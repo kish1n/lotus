@@ -1,9 +1,11 @@
+module;
+#include "SDL3/SDL.h"
+
 export module lotus:RenderManager;
 
 import std;
 import :render;
 
-struct SDL_Window;
 class Drawer;
 class State;
 
