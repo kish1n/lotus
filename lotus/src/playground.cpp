@@ -8,7 +8,11 @@ void timeout(int seconds);
 int main(int argc, char** args)
 {
     std::cout << "Starting Lotus Game Engine Testing Playground..." << std::endl;
-    auto fut = std::async(std::launch::async, timeout, 5);
+    std::thread([] {
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+        std::cerr << "Timeout reached. Terminating program.\n";
+        std::exit(0);
+    }).detach();
 
     GameObject sq1;
     GameObject sq2(0.1, 0.1);
@@ -27,10 +31,4 @@ int main(int argc, char** args)
     }
 
     return gameLoop.execute();
-}
-
-void timeout(int seconds) {
-    std::this_thread::sleep_for(std::chrono::seconds(seconds));
-    std::cerr << "Timeout reached. Terminating program.\n";
-    std::exit(0);
 }
