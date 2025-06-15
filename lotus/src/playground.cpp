@@ -5,8 +5,7 @@ using namespace std;
 
 void timeout(int seconds);
 
-int main(int argc, char** args)
-{
+int main(int argc, char **args) {
     std::cout << "Starting Lotus Game Engine Testing Playground..." << std::endl;
     std::thread([] {
         std::this_thread::sleep_for(std::chrono::seconds(5));
@@ -22,11 +21,12 @@ int main(int argc, char** args)
     RenderManager renderManager;
     GameLoop gameLoop(&renderManager, &state);
 
-    for (int i = 0; i < argc; i++)
-    {
-        if (strcmp(args[i], "-w") == 0)
-        {
+    for (int i = 0; i < argc; i++) {
+        if (strcmp(args[i], "-w") == 0) {
             renderManager.setWireframeMode(true);
+        }
+        if (strcmp(args[i], "-t") == 0) {
+            cout << "hI";
         }
     }
 
