@@ -3,21 +3,14 @@ import lotus;
 
 using namespace std;
 
-void timeout(int seconds);
+static void startTerminationTimer() {}
 
 int main(int argc, char **args) {
     std::cout << "Starting Lotus Game Engine Testing Playground..." << std::endl;
-    std::thread([] {
-        std::this_thread::sleep_for(std::chrono::seconds(5));
-        std::cerr << "Timeout reached. Terminating program.\n";
-        std::exit(0);
-    }).detach();
-
-    GameObject sq1;
-    GameObject sq2(0.1, 0.1);
 
     State state;
-    state.objs.insert(state.objs.end(), {&sq1, &sq2});
+    state.objs.emplace_back();
+    state.objs.emplace_back(0.1, 0.1);
     RenderManager renderManager;
     GameLoop gameLoop(&renderManager, &state);
 
@@ -26,7 +19,7 @@ int main(int argc, char **args) {
             renderManager.setWireframeMode(true);
         }
         if (strcmp(args[i], "-t") == 0) {
-            cout << "hI";
+            startTerminationTimer();
         }
     }
 

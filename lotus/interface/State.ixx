@@ -8,5 +8,5 @@ export class State {
   public:
     State() = default;
 
-    std::vector<GameObject *> objs;
+    std::vector<GameObject> objs;
 };

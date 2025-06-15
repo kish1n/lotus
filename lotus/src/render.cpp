@@ -33,7 +33,7 @@ void BasicTriangleDrawer::draw(State *state) {
     vertices.reserve(state->objs.size() * 12); // 4 vertex per gameobject, 3 floats per vertex
     int ptr = 0;
     for (int i = 0; i < state->objs.size(); i++) {
-        GameObject &obj = *state->objs[i];
+        GameObject &obj = state->objs[i];
         std::vector<float> here = {obj.x,
                                    obj.y,
                                    0,
@@ -60,7 +60,7 @@ void BasicTriangleDrawer::draw(State *state) {
 
     std::vector<unsigned int> indices;
     for (int i = 0; i < state->objs.size(); i++) {
-        GameObject &obj = *state->objs[i];
+        GameObject &obj = state->objs[i];
         unsigned int offset = i * 4;
         std::vector<unsigned int> here = {offset,     offset + 1, offset + 2,
                                           offset + 1, offset + 2, offset + 3};
