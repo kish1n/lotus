@@ -1,28 +1,26 @@
 export module lotus:programs;
 
-export namespace ShaderProgram
-{
+export namespace ShaderProgram {
 
 unsigned int compileBasicProgram();
 
 } // namespace ShaderProgram
 
-export class Shader
-{
-public:
+export class Shader {
+  public:
     Shader() = delete;
-    Shader(const Shader&) = delete;
-    Shader& operator=(Shader&) = delete;
+    Shader(const Shader &) = delete;
+    Shader &operator=(Shader &) = delete;
 
-    Shader(Shader&&) = default;
-    Shader& operator=(Shader&&) = default;
+    Shader(Shader &&) = default;
+    Shader &operator=(Shader &&) = default;
 
-    Shader(const char* vertexPath, const char* fragmentPath);
+    Shader(const char *vertexPath, const char *fragmentPath);
 
     void use();
 
     inline unsigned int getId() { return id; }
 
-private:
+  private:
     unsigned int id;
 };

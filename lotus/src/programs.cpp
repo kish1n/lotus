@@ -9,19 +9,16 @@ import std;
 import :programs;
 import :base;
 
-namespace ShaderProgram
-{
+namespace ShaderProgram {
 
-const char* defaultVertexShaderPath = "./Content/shaders/basic.vert";
-const char* defaultFragmentShaderPath = "./Content/shaders/basic.frag";
+const char *defaultVertexShaderPath = "./Content/shaders/basic.vert";
+const char *defaultFragmentShaderPath = "./Content/shaders/basic.frag";
 
-unsigned int compileBasicProgram()
-{
+unsigned int compileBasicProgram() {
     return Shader(defaultVertexShaderPath, defaultFragmentShaderPath).getId();
 }
 
-unsigned int compileProgram(const char* vertexShaderSource, const char* fragmentShaderSource)
-{
+unsigned int compileProgram(const char *vertexShaderSource, const char *fragmentShaderSource) {
     std::cout << "Beginning compilation of shader program" << std::endl;
     std::cout << "Vertex shader source: " << vertexShaderSource << std::endl;
     std::cout << "Fragment shader source: " << fragmentShaderSource << std::endl;
@@ -35,8 +32,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     int success;
     char infoLog[512];
     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
+    if (!success) {
         glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
         fatal(std::format("Failed to compile vertex shader. {}", infoLog));
     }
@@ -49,8 +45,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     glCompileShader(fragmentShader);
 
     glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
+    if (!success) {
         glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
         fatal(std::format("Failed to compile fragment shader. {}", infoLog));
     }
@@ -63,8 +58,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
     glLinkProgram(shaderProgram);
 
     glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if (!success)
-    {
+    if (!success) {
         glGetProgramInfoLog(shaderProgram, 512, nullptr, infoLog);
         fatal(std::format("Failed to link program. Error: {}", infoLog));
     }
@@ -79,8 +73,7 @@ unsigned int compileProgram(const char* vertexShaderSource, const char* fragment
 
 } // namespace ShaderProgram
 
-Shader::Shader(const char* vertexPath, const char* fragmentPath)
-{
+Shader::Shader(const char *vertexPath, const char *fragmentPath) {
     std::cout << "Loading shader from " << vertexPath << " and " << fragmentPath << std::endl;
 
     std::string vertexShaderSource;
@@ -91,10 +84,9 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 
     std::stringstream vertexBuffer;
     std::stringstream fragmentBuffer;
-    
+
     vertexStream.open(vertexPath, std::ios_base::in);
-    if (vertexStream.is_open() == false)
-    {
+    if (vertexStream.is_open() == false) {
         fatal(std::format("Failed to open vertex shader file {}", vertexPath));
     }
     vertexBuffer << vertexStream.rdbuf();
@@ -102,8 +94,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     vertexStream.close();
 
     fragmentStream.open(fragmentPath, std::ios_base::in);
-    if (fragmentStream.is_open() == false)
-    {
+    if (fragmentStream.is_open() == false) {
         fatal(std::format("Failed to open fragment shader file {}", fragmentPath));
     }
     fragmentBuffer << fragmentStream.rdbuf();
@@ -114,7 +105,4 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     std::cout << "Shader loaded successfully" << std::endl;
 }
 
-void Shader::use()
-{
-    glUseProgram(id);
-}
+void Shader::use() { glUseProgram(id); }

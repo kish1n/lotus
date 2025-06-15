@@ -4,10 +4,9 @@ import std;
 
 class GameObject;
 
-export class State
-{
-public:
+export class State {
+  public:
     State() = default;
 
-    std::vector<GameObject*> objs;
+    std::vector<GameObject *> objs;
 };
