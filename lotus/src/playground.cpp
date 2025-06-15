@@ -3,7 +3,13 @@ import lotus;
 
 using namespace std;
 
-static void startTerminationTimer() {}
+static void startTerminationTimer() {
+    std::thread([] {
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+        std::cerr << "Timeout reached. Terminating program.\n";
+        std::exit(0);
+    }).detach();
+}
 
 int main(int argc, char **args) {
     std::cout << "Starting Lotus Game Engine Testing Playground..." << std::endl;
