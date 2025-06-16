@@ -7,7 +7,7 @@ export class GameObject {
     GameObject(float x, float y, float width, float height)
         : x(x), y(y), width(width), height(height) {}
 
-    // location from bottom-left (0 to 1)
+    // location from center (-1 to 1)
     float x = -0.1;
     float y = -0.1;
 
