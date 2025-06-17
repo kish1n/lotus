@@ -2,6 +2,9 @@ module;
 #include "SDL3/SDL.h"
 #include "glad/glad.h"
 #include "stb_image.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 module lotus;
 
@@ -34,18 +37,11 @@ void BasicTriangleDrawer::draw(State *state) {
     int ptr = 0;
     for (int i = 0; i < state->objs.size(); i++) {
         GameObject &obj = state->objs[i];
-        std::vector<float> here = {obj.x,
-                                   obj.y,
-                                   0,
-                                   obj.x + obj.width,
-                                   obj.y,
-                                   0,
-                                   obj.x,
-                                   obj.y + obj.height,
-                                   0,
-                                   obj.x + obj.width,
-                                   obj.y + obj.height,
-                                   0};
+        std::vector<float> here = {
+            obj.x, obj.y, 0,
+            obj.x + obj.width, obj.y, 0,
+            obj.x, obj.y + obj.height, 0,
+            obj.x + obj.width, obj.y + obj.height, 0};
         vertices.insert(vertices.end(), here.begin(), here.end());
     }
     unsigned int VAO;
@@ -78,6 +74,11 @@ void BasicTriangleDrawer::draw(State *state) {
 
     int numVertices = state->objs.size() * 6; // 3 for each triangle, 2 triangles per gameobject
     glUseProgram(m_shaderProgram1);
+    glm::mat4 trans = glm::mat4(1.0f);
+    trans = glm::rotate(trans, (float)SDL_GetTicks() / 1000.0f, glm::vec3(0.0f, 0.0f, 1));
+
+    unsigned int transformLoc = glGetUniformLocation(m_shaderProgram1, "transform");
+    glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
     glDrawElements(GL_TRIANGLES, numVertices, GL_UNSIGNED_INT, 0);
 
     GLenum err;

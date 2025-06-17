@@ -1,5 +1,4 @@
 module;
-#include "SDL3/SDL.h"
 
 export module lotus:RenderManager;
 
@@ -8,6 +7,7 @@ import :render;
 
 class Drawer;
 class State;
+extern "C++" struct SDL_Window;
 
 export class RenderManager {
   public:

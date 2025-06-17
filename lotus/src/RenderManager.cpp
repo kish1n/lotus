@@ -19,7 +19,7 @@ RenderManager::RenderManager() {
         fatal(std::format("SDL could not initialize! SDL_Error: {}", SDL_GetError()));
     }
 
-    m_window = SDL_CreateWindow("SDL Tutorial", STARTING_SCREEN_WIDTH, STARTING_SCREEN_HEIGHT,
+    m_window = SDL_CreateWindow("Lotus", STARTING_SCREEN_WIDTH, STARTING_SCREEN_HEIGHT,
                                 SDL_WINDOW_OPENGL);
     if (!m_window) {
         fatal(std::format("Window could not be created! SDL_Error: {}", SDL_GetError()));
