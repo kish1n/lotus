@@ -10,3 +10,8 @@ Basic Setup for Windows:
 
 Current available targets:
 `lotus`, `playground`, `brick-breaker`
+
+Tech:
+C++23
+OpenGL w/ GLSL
+SDL
