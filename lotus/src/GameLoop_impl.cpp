@@ -2,11 +2,11 @@ module;
 
 #include "SDL3/SDL.h"
 
-module lotus;
+module lotus:GameLoop.impl;
 
 import std;
-import :GameLoop;
 import :RenderManager;
+import :GameLoop;
 
 int GameLoop::execute() {
     std::cout << "Entering game loop..." << std::endl;

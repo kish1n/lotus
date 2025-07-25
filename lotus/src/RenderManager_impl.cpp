@@ -2,7 +2,7 @@ module;
 #include "SDL3/SDL.h"
 #include "glad/glad.h"
 
-module lotus;
+module lotus:RenderManager.impl;
 
 import std;
 import :base;

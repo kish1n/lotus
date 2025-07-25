@@ -3,11 +3,11 @@ module;
 #include "lotus/base.cppm"*/
 #include "glad/glad.h"
 
-module lotus;
+module lotus:programs.impl;
 
 import std;
-import :programs;
 import :base;
+import :programs;
 
 namespace ShaderProgram {
 

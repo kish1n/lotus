@@ -20,12 +20,10 @@ target_sources(lotus
         interface/RenderManager.ixx
         interface/State.ixx
         interface/lotus.ixx
-
-        PRIVATE
-        src/GameLoop.cpp
-        src/programs.cpp
-        src/render.cpp
-        src/RenderManager.cpp
+        src/GameLoop_impl.cpp
+        src/programs_impl.cpp
+        src/render_impl.cpp
+        src/RenderManager_impl.cpp
 )
 
 target_include_directories(lotus

@@ -6,13 +6,14 @@ module;
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-module lotus;
+module lotus:render.impl;
 
 import std;
-import :render;
 import :base;
 import :programs;
 import :State;
+import :render;
+import :GameObject;
 
 Drawer::Drawer() {}
 
