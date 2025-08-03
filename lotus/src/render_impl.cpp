@@ -77,6 +77,7 @@ void BasicTriangleDrawer::draw(State *state) {
     glUseProgram(m_shaderProgram1);
     glm::mat4 trans = glm::mat4(1.0f);
     trans = glm::rotate(trans, (float)SDL_GetTicks() / 1000.0f, glm::vec3(0.0f, 0.0f, 1));
+    trans = glm::scale(trans, glm::vec3(glm::abs(3 * glm::cos((float)SDL_GetTicks() / 1000)), glm::abs(3 * glm::cos((float)SDL_GetTicks() / 1000)), 1.f));
 
     unsigned int transformLoc = glGetUniformLocation(m_shaderProgram1, "transform");
     glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
