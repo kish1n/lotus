@@ -20,10 +20,19 @@ target_sources(lotus
         interface/RenderManager.ixx
         interface/State.ixx
         interface/lotus.ixx
+        interface/Game.ixx
+        interface/Shader.ixx
+        interface/Texture_impl.ixx
+        interface/ResourceManager.ixx
+
         src/GameLoop_impl.cpp
         src/programs_impl.cpp
         src/render_impl.cpp
         src/RenderManager_impl.cpp
+        src/Game_impl.cxx
+        src/Shader_impl.cxx
+        src/Texture_impl.cxx
+        src/ResourceManager_impl.cxx
 )
 
 target_include_directories(lotus
