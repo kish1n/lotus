@@ -6,10 +6,7 @@
             "type": "cppvsdbg",
             "cwd": "${workspaceFolder}",
             "request": "launch",
-            "program": "${workspaceFolder}/build/lotus/playground.exe",
-            "sourceFileMap": {
-                ".": "${workspaceFolder}"
-            }
+            "program": "${workspaceFolder}/build/lotus/playground.exe"
         }
     ]
 }

@@ -1,4 +1,8 @@
-set(CMAKE_CXX_STANDARD 26)
+if (WIN32)
+  set(CMAKE_CXX_STANDARD 23)
+else()
+  set(CMAKE_CXX_STANDARD 26)
+endif()
 set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD
   # This specific value changes as experimental support evolves. See
   # `Help/dev/experimental.rst` in the CMake source corresponding to
@@ -9,4 +13,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # string(REPLACE "\\" "/" CMAKE_TOOLCHAIN_FILE ${CMAKE_TOOLCHAIN_FILE})
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_MODULE_STD 1)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+
+if (NOT WIN32)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+endif()
