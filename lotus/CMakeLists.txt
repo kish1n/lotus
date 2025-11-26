@@ -2,40 +2,17 @@ add_library(lotus)
 
 target_sources(lotus
     PRIVATE
-        src/stb_image.cpp
-        src/State.cpp
-)
-
-target_sources(lotus
-        PUBLIC
-    FILE_SET lotus_modules
-    TYPE CXX_MODULES
-    FILES
-        interface/base.ixx
-        interface/GameLoop.ixx
-        interface/GameObject.ixx
-        interface/mesh_engine.ixx
-        interface/programs.ixx
-        interface/render.ixx
-        interface/RenderManager.ixx
-        interface/State.ixx
-        interface/lotus.ixx
-        interface/Game.ixx
-        interface/Shader.ixx
-        interface/Texture_impl.ixx
-        interface/ResourceManager.ixx
-
-        src/GameLoop_impl.cpp
-        src/programs_impl.cpp
-        src/render_impl.cpp
-        src/RenderManager_impl.cpp
-        src/Game_impl.cxx
-        src/Shader_impl.cxx
-        src/Texture_impl.cxx
-        src/ResourceManager_impl.cxx
+    src/Game.cpp
+    src/playground.cpp
+    src/ResourceManager.cpp
+    src/Shader.cpp
+    src/stb_image.cpp
+    src/Texture.cpp
 )
 
 target_include_directories(lotus
+    PUBLIC
+        include
     PRIVATE
         ${Stb_INCLUDE_DIR}
         ${CMAKE_SOURCE_DIR}/external/Glad/include

@@ -1,12 +1,10 @@
-module;
-#include "glad/glad.h"
-#include "stb_image.h"
-module lotus:ResourceManager.impl;
+#include "lotus/ResourceManager.h"
 
-import std;
-import :ResourceManager;
-import :Shader;
-import :Texture;
+#include <fstream>
+#include <iostream>
+#include <sstream>
+
+#include "stb_image.h"
 
 // Instantiate static variables
 std::map<std::string, Texture2D> ResourceManager::Textures;

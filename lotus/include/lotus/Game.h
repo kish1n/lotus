@@ -1,23 +1,27 @@
-export module lotus:Game;
+#pragma once
 
-import std;
+#include "SDL3/SDL.h"
+#include <glad/glad.h>
+
+// Represents the current state of the game
+enum GameState { GAME_ACTIVE, GAME_MENU, GAME_WIN };
 
 // Game holds all game-related state and functionality.
 // Combines all game-related data into a single class for
 // easy access to each of the components and manageability.
 class Game {
   public:
-    enum class GameState;
+    // game state
     GameState State;
-    std::vector<bool> Keys = std::vector<bool>(128);
+    bool Keys[1024];
     unsigned int Width, Height;
+    // constructor/destructor
     Game(unsigned int width, unsigned int height);
     ~Game();
+    // initialize game state (load all shaders/textures/levels)
     void Init();
+    // game loop
     void ProcessInput(float dt);
     void Update(float dt);
     void Render();
-
-    // Represents the current state of the game
-    enum class GameState { GAME_ACTIVE, GAME_MENU, GAME_WIN };
 };
