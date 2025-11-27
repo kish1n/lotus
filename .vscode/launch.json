@@ -7,6 +7,13 @@
             "cwd": "${workspaceFolder}",
             "request": "launch",
             "program": "${workspaceFolder}/build/lotus/playground.exe"
+        },
+        {
+            "name": "Breakout",
+            "type": "cppvsdbg",
+            "cwd": "${workspaceFolder}",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/games/Breakout/Breakout.exe"
         }
     ]
 }

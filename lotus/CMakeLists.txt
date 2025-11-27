@@ -5,6 +5,7 @@ target_sources(lotus
     src/Game.cpp
     src/ResourceManager.cpp
     src/Shader.cpp
+    src/SpriteRenderer.cpp
     src/stb_image.cpp
     src/Texture.cpp
 )
