@@ -13,8 +13,8 @@
 #include "lotus/ResourceManager.h"
 #include "lotus/base.h"
 
-#include <iostream>
-
+void key_callback(SDL_Window *window, const SDL_KeyboardEvent &key_event);
+void framebuffer_size_callback(int width, int height);
 // The Width of the screen
 const unsigned int SCREEN_WIDTH = 800;
 // The height of the screen
@@ -61,15 +61,28 @@ int main(int argc, char *argv[]) {
     // deltaTime variables
     // -------------------
     float deltaTime = 0.0f;
-    float lastFrame = 0.0f;
+    Uint64 lastFrame = SDL_GetTicks();
+    bool running = true;
 
-    /*while (!glfwWindowShouldClose(window)) {
+    while (running) {
         // calculate delta time
         // --------------------
-        float currentFrame = glfwGetTime();
-        deltaTime = currentFrame - lastFrame;
+        Uint64 currentFrame = SDL_GetTicks();
+        deltaTime = (currentFrame - lastFrame) / 1000.0f; // Convert to seconds
         lastFrame = currentFrame;
-        glfwPollEvents();
+
+        // poll events
+        // -----------
+        SDL_Event event;
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_EVENT_QUIT) {
+                running = false;
+            } else if (event.type == SDL_EVENT_KEY_DOWN || event.type == SDL_EVENT_KEY_UP) {
+                key_callback(window, event.key);
+            } else if (event.type == SDL_EVENT_WINDOW_RESIZED) {
+                framebuffer_size_callback(event.window.data1, event.window.data2);
+            }
+        }
 
         // manage user input
         // -----------------
@@ -85,8 +98,8 @@ int main(int argc, char *argv[]) {
         glClear(GL_COLOR_BUFFER_BIT);
         Breakout.Render();
 
-        glfwSwapBuffers(window);
-    }*/
+        SDL_GL_SwapWindow(window);
+    }
 
     // delete all resources as loaded using the resource manager
     // ---------------------------------------------------------
@@ -96,20 +109,21 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-void key_callback(GLFWwindow *window, int key, int scancode, int action, int mode) {
-    // when a user presses the escape key, we set the WindowShouldClose property to true, closing
-    // the application
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-    if (key >= 0 && key < 1024) {
-        if (action == GLFW_PRESS)
-            Breakout.Keys[key] = true;
-        else if (action == GLFW_RELEASE)
-            Breakout.Keys[key] = false;
+void key_callback(SDL_Window *window, const SDL_KeyboardEvent &key_event) {
+    // when a user presses the escape key, we destroy the window
+    if (key_event.key == SDLK_ESCAPE && key_event.type == SDL_EVENT_KEY_DOWN) {
+        SDL_DestroyWindow(window);
+        return;
     }
+
+    SDL_Scancode scancode = key_event.scancode;
+    if (key_event.type == SDL_EVENT_KEY_DOWN)
+        Breakout.Keys[scancode] = true;
+    else if (key_event.type == SDL_EVENT_KEY_UP)
+        Breakout.Keys[scancode] = false;
 }
 
-void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
+void framebuffer_size_callback(int width, int height) {
     // make sure the viewport matches the new window dimensions; note that width and
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);

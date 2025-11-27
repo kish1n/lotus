@@ -3,7 +3,6 @@ add_library(lotus)
 target_sources(lotus
     PRIVATE
     src/Game.cpp
-    src/playground.cpp
     src/ResourceManager.cpp
     src/Shader.cpp
     src/stb_image.cpp
@@ -43,4 +42,6 @@ add_executable(playground
 target_link_libraries(playground
     PRIVATE
         lotus
+        SDL3::SDL3
+        Glad
 )
