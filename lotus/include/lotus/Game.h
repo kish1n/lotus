@@ -30,6 +30,12 @@ class Game {
     void Render();
     void DoCollisions();
 
+    // reset
+    void ResetLevel();
+    void ResetPlayer();
+
     std::vector<GameLevel> Levels;
     unsigned int Level = -1;
 };
+
+enum Direction { UP, RIGHT, DOWN, LEFT };
