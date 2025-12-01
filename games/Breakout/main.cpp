@@ -107,6 +107,7 @@ void key_callback(SDL_Window *window, const SDL_KeyboardEvent &key_event) {
     // when a user presses the escape key, we destroy the window
     if (key_event.key == SDLK_ESCAPE && key_event.type == SDL_EVENT_KEY_DOWN) {
         SDL_DestroyWindow(window);
+        exit(0);
         return;
     }
 

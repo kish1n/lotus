@@ -1,7 +1,11 @@
 #pragma once
 
+#include "lotus/GameLevel.h"
+
 #include "SDL3/SDL.h"
 #include <glad/glad.h>
+
+#include <vector>
 
 // Represents the current state of the game
 enum GameState { GAME_ACTIVE, GAME_MENU, GAME_WIN };
@@ -24,4 +28,7 @@ class Game {
     void ProcessInput(float dt);
     void Update(float dt);
     void Render();
+
+    std::vector<GameLevel> Levels;
+    unsigned int Level = -1;
 };

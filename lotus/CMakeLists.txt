@@ -2,7 +2,10 @@ add_library(lotus)
 
 target_sources(lotus
     PRIVATE
+    src/BallObject.cpp
     src/Game.cpp
+    src/GameLevel.cpp
+    src/GameObject.cpp
     src/ResourceManager.cpp
     src/Shader.cpp
     src/SpriteRenderer.cpp
