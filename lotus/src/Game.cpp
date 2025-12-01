@@ -22,6 +22,18 @@ const float BALL_RADIUS = 12.5f;
 
 BallObject *Ball;
 
+bool CheckCollision(GameObject &one, GameObject &two) // AABB - AABB collision
+{
+    // collision x-axis?
+    bool collisionX = one.Position.x + one.Size.x >= two.Position.x &&
+                      two.Position.x + two.Size.x >= one.Position.x;
+    // collision y-axis?
+    bool collisionY = one.Position.y + one.Size.y >= two.Position.y &&
+                      two.Position.y + two.Size.y >= one.Position.y;
+    // collision only if on both axes
+    return collisionX && collisionY;
+}
+
 Game::Game(unsigned int width, unsigned int height)
     : State(GAME_ACTIVE), Keys(), Width(width), Height(height) {}
 
@@ -68,7 +80,10 @@ void Game::Init() {
                           ResourceManager::GetTexture("face"));
 }
 
-void Game::Update(float dt) { Ball->Move(dt, this->Width); }
+void Game::Update(float dt) {
+    Ball->Move(dt, this->Width);
+    this->DoCollisions();
+}
 
 void Game::ProcessInput(float dt) {
     if (this->State == GAME_ACTIVE) {
@@ -111,4 +126,15 @@ void Game::Render() {
 
     Renderer->DrawSprite(ResourceManager::GetTexture("face"), glm::vec2(200.0f, 200.0f),
                          glm::vec2(300.0f, 300.0f), rotation, glm::vec3(0.f, 1.0f, 0.f));
+}
+
+void Game::DoCollisions() {
+    for (GameObject &box : this->Levels[this->Level].Bricks) {
+        if (!box.Destroyed) {
+            if (CheckCollision(*Ball, box)) {
+                if (!box.IsSolid)
+                    box.Destroyed = true;
+            }
+        }
+    }
 }

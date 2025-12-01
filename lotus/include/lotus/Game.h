@@ -28,6 +28,7 @@ class Game {
     void ProcessInput(float dt);
     void Update(float dt);
     void Render();
+    void DoCollisions();
 
     std::vector<GameLevel> Levels;
     unsigned int Level = -1;
